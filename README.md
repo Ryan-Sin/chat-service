@@ -1,4 +1,4 @@
-# Sionic AI 챗봇 서비스
+# 챗봇 서비스
 
 ## 프로젝트 소개
 
@@ -41,7 +41,6 @@ docker-compose up -d
 - JDBC URL: jdbc:h2:mem:sionic
 - 사용자명: sa
 - 비밀번호: (비어 있음)
-
 ## pgAdmin 접속 (PostgreSQL 모드)
 
 - URL: http://localhost:5050
