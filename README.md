@@ -18,7 +18,7 @@ AI 챗봇 서비스로, 사용자 관리, 대화 관리, 피드백 관리, 분�
 ### H2 메모리 모드로 실행 (기본)
 
 ```bash
-./gradlew bootRun --args='--spring.profiles.active=local'
+./gradlew bootRun --args='--spring.profiles.active=memory'
 ```
 
 ### PostgreSQL 모드로 실행
@@ -32,7 +32,7 @@ docker-compose up -d
 2. 애플리케이션 실행
 
 ```bash
-./gradlew bootRun --args='--spring.profiles.active=postgres'
+./gradlew bootRun --args='--spring.profiles.active=local'
 ```
 
 ## H2 콘솔 접속
