@@ -1,0 +1,67 @@
+spring:
+  application:
+    name: sionic
+server:
+  port: 8080
+
+---
+spring:
+  profiles:
+    active: memory
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:sionic;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:./db/schema.sql
+      data-locations: classpath:./db/data.sql
+
+# JWT 설정
+jwt:
+  secret: sionic-secret-key-should-be-very-long-and-secure-in-production
+  expiration: 86400000
+
+# OpenAI 설정 (실제 사용 시 환경 변수로 설정 필요)
+openai:
+  api:
+    key: ${OPENAI_API_KEY:dummy-api-key}
+  default:
+    model: gpt-3.5-turbo
+  thread:
+    timeout: 1800000
+
+---
+# PostgreSQL 프로필 설정
+spring:
+  config:
+    activate:
+      on-profile: postgres
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/sionic
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update # PostgreSQL에서는 JPA가 스키마를 생성하도록 함
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  sql:
+    init:
+      mode: never # PostgreSQL에서는 schema.sql 실행하지 않음
